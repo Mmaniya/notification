@@ -42,9 +42,7 @@ export class NgbdModalComponent {
 
     constructor(private modalService: NgbModal) {
         setInterval(() => {
-            // this.CurrentTime = new Date().getHours() + ':' + new Date().getMinutes()}, 1);
-            this.CurrentTime = new Date()}, 1);
-
+            this.CurrentTime = new Date().getDate() + '/' + (new Date().getMonth()+1) + '/' + new Date().getFullYear() + '' + new Date().getHours() + ':' + new Date().getMinutes()}, 1);
     }
     ngOnInit() {
         this.updateSubscription = interval(1000).subscribe(
