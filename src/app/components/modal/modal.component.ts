@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { Observable, interval, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-modal-content',
@@ -27,6 +28,8 @@ export class NgbdModalContent {
     @Input() name;
 
     constructor(public activeModal: NgbActiveModal) {}
+
+
 }
 
 @Component({
@@ -34,9 +37,24 @@ export class NgbdModalContent {
     templateUrl: './modal.component.html'
 })
 export class NgbdModalComponent {
-    constructor(private modalService: NgbModal) {}
-    open() {
-        const modalRef = this.modalService.open(NgbdModalContent);
-        modalRef.componentInstance.name = 'World';
+    private updateSubscription: Subscription;
+    CurrentTime: any;
+
+    constructor(private modalService: NgbModal) {
+        setInterval(() => {
+            // this.CurrentTime = new Date().getHours() + ':' + new Date().getMinutes()}, 1);
+            this.CurrentTime = new Date()}, 1);
+
+    }
+    ngOnInit() {
+        this.updateSubscription = interval(1000).subscribe(
+            (val) => { 
+                // if(this.CurrentTime == '13:57'){
+                    // alert(this.CurrentTime);
+                // const modalRef = this.modalService.open(NgbdModalContent);
+                // modalRef.componentInstance.name = 'World';
+                // }
+          }) 
+
     }
 }

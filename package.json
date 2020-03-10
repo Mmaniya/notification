@@ -22,6 +22,7 @@
     "@angular/core": "7.2.0",
     "@angular/forms": "7.2.0",
     "@angular/http": "7.2.0",
+    "@angular/material": "^9.1.1",
     "@angular/platform-browser": "7.2.0",
     "@angular/platform-browser-dynamic": "7.2.0",
     "@angular/router": "7.2.0",
@@ -33,6 +34,8 @@
     "ng2-nouislider": "1.7.12",
     "nouislider": "9.2.0",
     "popper.js": "1.14.4",
+    "primeicons": "^2.0.0",
+    "primeng": "^9.0.0",
     "rxjs": "6.2.2",
     "rxjs-compat": "6.2.2",
     "zone.js": "0.8.26"
