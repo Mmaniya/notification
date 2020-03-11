@@ -5,14 +5,13 @@
             <h1>Timer page</h1>
             <h3>Start designing your timer page here.</h3>
             <br />
-            <p-calendar [(ngModel)]="date7" [showTime]="true"></p-calendar>
             <!-- <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-outline-neutral btn-round"><i class="fa fa-play"></i>Watch video</a> -->
             <button type="button" class="btn btn-outline-neutral btn-round">Set Time</button>
         </div>
     </div>
 </div>
-<!-- <div class="main">
-    <div class="section text-center">
+ <div class="main">
+<!-- <div class="section text-center">
     <div class="container">
         <div class="row">
             <div class="col-md-8 mr-auto ml-auto">
@@ -154,39 +153,39 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
     <div class="section landing-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 mr-auto ml-auto">
-                    <h2 class="text-center">Keep in touch?</h2>
-                    <form class="contact-form">
+                    <h2 class="text-center">Set Time and Message.</h2>
+                    <form class="contact-form" #loginForm="ngForm">
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Name</label>
+                                <label>Date</label>
                                 <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
                                     <div class="input-group-prepend">
                                       <span class="input-group-text"><i class="nc-icon nc-single-02"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Name" (focus)="focus=true" (blur)="focus=false" >
+                                    <input type="date" class="form-control" placeholder="Select Date Time" [(ngModel)]="datetime"  name="datetime" (focus)="focus=true" (blur)="focus=false" >
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label>Email</label>
-                                <div class="input-group" [ngClass]="{'input-group-focus':focus1===true}">
+                                <label>Time</label>
+                                <div class="input-group" [ngClass]="{'input-group-focus':focus===true}">
                                     <div class="input-group-prepend">
-                                      <span class="input-group-text">  <i class="nc-icon nc-email-85"></i></span>
+                                      <span class="input-group-text"><i class="nc-icon nc-single-02"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Email" (focus)="focus1=true" (blur)="focus1=false" >
+                                    <input type="time" class="form-control" placeholder="Select Time" [(ngModel)]="time"  name="time" (focus)="focus=true" (blur)="focus=false" >
                                 </div>
                             </div>
                         </div>
                         <label>Message</label>
-                        <textarea class="form-control" rows="4" placeholder="Tell us your thoughts and feelings..."></textarea>
+                        <textarea class="form-control" [(ngModel)]="message" name="message" rows="4" placeholder="Tell us your thoughts and feelings..."></textarea>
                         <div class="row">
                             <div class="col-md-4 mr-auto ml-auto">
-                                <button class="btn btn-danger btn-lg btn-fill">Send Message</button>
+                                <button class="btn btn-danger btn-lg btn-fill" (click)="onClk()">Save Message</button>
                             </div>
                         </div>
                     </form>
@@ -194,4 +193,4 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>

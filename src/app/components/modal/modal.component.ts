@@ -6,30 +6,22 @@ import { Observable, interval, Subscription } from 'rxjs';
     selector: 'app-modal-content',
     template: `
     <div class="modal-header">
-        <h5 class="modal-title text-center">Modal title</h5>
+        <h5 class="modal-title text-center">Notification</h5>
         <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <div class="modal-body"> Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
-    </div>
-    <div class="modal-footer">
-        <div class="left-side">
-            <button type="button" class="btn btn-default btn-link" (click)="activeModal.close('Close click')">Never mind</button>
-        </div>
-        <div class="divider"></div>
-        <div class="right-side">
-            <button type="button" class="btn btn-danger btn-link" (click)="activeModal.close('Close click')">DELETE</button>
-        </div>
-    </div>
-    `
+    <div class="modal-body">
+    {{this.setmsg.message}}
+    </div>`
 })
 export class NgbdModalContent {
     @Input() name;
+    setmsg:any;
 
-    constructor(public activeModal: NgbActiveModal) {}
-
-
+    constructor(public activeModal: NgbActiveModal) {
+        this.setmsg = JSON.parse(localStorage.getItem('message'));
+    }
 }
 
 @Component({
@@ -38,20 +30,35 @@ export class NgbdModalContent {
 })
 export class NgbdModalComponent {
     private updateSubscription: Subscription;
-    CurrentTime: any;
-
+    formatted_date: any;
+    settime:any;
+    modifydate:any;
     constructor(private modalService: NgbModal) {
+        this.settime = JSON.parse(localStorage.getItem('message'));
+        function appendLeadingZeroes(n){
+            if(n <= 9){
+              return "0" + n;
+            }
+            return n
+          }
+
         setInterval(() => {
-            this.CurrentTime = new Date().getDate() + '/' + (new Date().getMonth()+1) + '/' + new Date().getFullYear() + '' + new Date().getHours() + ':' + new Date().getMinutes()}, 1);
+            let current_datetime = new Date()
+            // this.formatted_date = current_datetime.getFullYear() + '-' + appendLeadingZeroes(current_datetime.getMonth() +1) + '-' + current_datetime.getDate() + '' + (((current_datetime.getHours() +24) % 12 || 12) < 10 ? '0' : '') + ((current_datetime.getHours() +12 ) % 12 || 12) + ':' + current_datetime.getMinutes()
+            this.formatted_date = current_datetime.getFullYear() + '-' + appendLeadingZeroes(current_datetime.getMonth() +1) + '-' + current_datetime.getDate() + '' + current_datetime.getHours() + ':' + current_datetime.getMinutes()
+        }, 1);
+        this.modifydate = this.settime.datetime +''+this.settime.time
     }
     ngOnInit() {
-        this.updateSubscription = interval(1000).subscribe(
+        //    
+        this.updateSubscription = interval(10000).subscribe(
             (val) => { 
-                // if(this.CurrentTime == '13:57'){
-                    // alert(this.CurrentTime);
-                // const modalRef = this.modalService.open(NgbdModalContent);
-                // modalRef.componentInstance.name = 'World';
-                // }
+                // alert(this.formatted_date);
+                // alert(this.modifydate);  
+                if(this.formatted_date == this.modifydate){
+                const modalRef = this.modalService.open(NgbdModalContent);
+                modalRef.componentInstance.name = 'World';
+                }
           }) 
 
     }

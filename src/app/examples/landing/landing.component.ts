@@ -7,13 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class LandingComponent implements OnInit {
-  focus: any;
-  focus1: any;
+  datetime: any;
+  time:any;
+  message: string;
 
   constructor() { }
 
   ngOnInit() {
 
+  }
+  onClk(){
+    let postData = {
+      "datetime": this.datetime,
+      "time":this.time,
+      "message": this.message,
+    }
+    localStorage.setItem('message',JSON.stringify(postData));
+    alert('Set Desktop Notification successfully.!');
   }
 
 }
