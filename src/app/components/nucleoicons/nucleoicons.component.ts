@@ -1,23 +1,44 @@
-import { Component, OnInit, Inject, Renderer, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, Renderer } from '@angular/core';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-nucleoicons',
     templateUrl: './nucleoicons.component.html',
     styleUrls: ['./nucleoicons.component.scss']
 })
-export class NucleoiconsComponent implements OnInit, OnDestroy {
+export class NucleoiconsComponent implements OnInit {
 
-    constructor( private element : ElementRef) {}
+    page = 4;
+    page1 = 5;
+    focus;
+    focus1;
+    displayBasic: boolean;
+    focus2;
+    date: { year: number, month: number };
+    model: NgbDateStruct;
+    constructor(private renderer: Renderer) { }
 
-    ngOnInit() {
-        const body = document.getElementsByTagName('app-nucleoicons')[0];
-        let navbar = document.getElementsByTagName('app-navbar')[0].children[0];
-        navbar.classList.add('navbar-hidden');
-        body.classList.add('demo-icons');
+    isWeekend(date: NgbDateStruct) {
+        const d = new Date(date.year, date.month - 1, date.day);
+        return d.getDay() === 0 || d.getDay() === 6;
     }
 
-    ngOnDestroy(){
-        let navbar = document.getElementsByTagName('app-navbar')[0].children[0];
-        navbar.classList.remove('navbar-hidden');
+    isDisabled(date: NgbDateStruct, current: { month: number }) {
+        return date.month !== current.month;
+    }
+    showBasicDialog() {
+        this.displayBasic = true;
+    }
+    ngOnInit() {
+        let input_group_focus = document.getElementsByClassName('form-control');
+        let input_group = document.getElementsByClassName('input-group');
+        for (let i = 0; i < input_group.length; i++) {
+            input_group[i].children[0].addEventListener('focus', function () {
+                input_group[i].classList.add('input-group-focus');
+            });
+            input_group[i].children[0].addEventListener('blur', function () {
+                input_group[i].classList.remove('input-group-focus');
+            });
+        }
     }
 }

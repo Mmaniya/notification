@@ -6,7 +6,7 @@
             <h3>Start designing your timer page here.</h3>
             <br />
             <!-- <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-outline-neutral btn-round"><i class="fa fa-play"></i>Watch video</a> -->
-            <button type="button" class="btn btn-outline-neutral btn-round">Set Time</button>
+            <button type="button" class="btn btn-outline-neutral btn-round" (click)="scroll(target)">Set Time</button>
         </div>
     </div>
 </div>
@@ -155,7 +155,7 @@
     </div>
 </div> -->
 
-    <div class="section landing-section">
+    <div class="section landing-section" #target>
         <div class="container">
             <div class="row">
                 <div class="col-md-8 mr-auto ml-auto">
@@ -185,7 +185,7 @@
                         <textarea class="form-control" [(ngModel)]="message" name="message" rows="4" placeholder="Tell us your thoughts and feelings..."></textarea>
                         <div class="row">
                             <div class="col-md-4 mr-auto ml-auto">
-                                <button class="btn btn-danger btn-lg btn-fill" (click)="onClk()">Save Message</button>
+                                <button class="btn btn-danger btn-lg btn-fill" (click)="onClk()" >Save Message</button>
                             </div>
                         </div>
                     </form>

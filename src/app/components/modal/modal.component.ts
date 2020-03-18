@@ -51,7 +51,7 @@ export class NgbdModalComponent {
     }
     ngOnInit() {
         //    
-        this.updateSubscription = interval(10000).subscribe(
+        this.updateSubscription = interval(15000).subscribe(
             (val) => { 
                 // alert(this.formatted_date);
                 // alert(this.modifydate);  

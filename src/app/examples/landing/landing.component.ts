@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -11,11 +12,14 @@ export class LandingComponent implements OnInit {
   time:any;
   message: string;
 
-  constructor() { }
+  constructor(private router: Router){ }
 
   ngOnInit() {
 
   }
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
+}
   onClk(){
     let postData = {
       "datetime": this.datetime,
@@ -24,6 +28,7 @@ export class LandingComponent implements OnInit {
     }
     localStorage.setItem('message',JSON.stringify(postData));
     alert('Set Desktop Notification successfully.!');
+    this.router.navigate(['/windows']);
   }
 
 }
